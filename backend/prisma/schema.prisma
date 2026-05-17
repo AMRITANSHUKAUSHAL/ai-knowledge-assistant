@@ -18,5 +18,16 @@ model  User{
   name        String       
   email       String       @unique
   password     String
+  documents    Document[]
   createdAt     DateTime @default(now())
+}
+
+model    Document{
+  id            Int       @id @default(autoincrement())
+  title         String 
+  content       String 
+  filePath      String 
+  userId        Int
+  user          User      @relation(fields: [userId], references: [id])
+  createdAt     DateTime  @default(now())
 }
